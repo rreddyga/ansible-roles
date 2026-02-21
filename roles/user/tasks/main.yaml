@@ -1,0 +1,28 @@
+- name: app setup
+  ansible.builtin.import_role:
+    name: common
+    taks_from: app-setup.yaml
+
+- name: nodejs setup
+  ansible.builtin.import_role:
+    name: common
+    taks_from: nodejs-setup.yaml
+
+- name: systemd setup
+  ansible.builtin.import_role:
+    name: common
+    taks_from: systemd-setup.yaml
+
+- name: start user
+  ansible.builtin.service:
+    name: user
+    state: restarted
+    enabled: yes
+
+# execution process
+# 1. ansible finds the meta directory execute main.yaml 
+# 2. it depends on the common role
+# 3. ansible executes in common/tasks/main.yaml
+# 4. now ansible executes the catalogue/tasks/main.yaml
+# 5. we extracted  common code into  common/app-setup.yaml
+# 6. ansible imports  this into catalogue/tasks/main.yaml
