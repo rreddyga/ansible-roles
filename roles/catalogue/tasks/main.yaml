@@ -4,7 +4,10 @@
     taks_from: app-setup.yaml
 
 - name: nodejs setup
-  ansible.builtin.import_role:
+  tags:
+  - deployment
+  #ansible.builtin.import_role:
+  ansible.builtin.include_role:
     name: common
     taks_from: nodejs-setup.yaml
 
