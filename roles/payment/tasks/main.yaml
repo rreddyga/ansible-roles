@@ -1,0 +1,26 @@
+- name: app setup
+  ansible.builtin.import_role:
+    name: common
+    taks_from: app-setup.yaml
+
+- name: python setup
+  ansible.builtin.import_role:
+    name: common
+    taks_from: python-setup.yaml
+
+- name: systemd setup
+  ansible.builtin.import_role:
+    name: common
+    taks_from: systemd-setup.yaml
+
+- name: restart payment
+  ansible.builtin.service:
+    name: payment
+    state: restarted
+    enabled: yes
+
+# to check the what is happening in the backgroun when we run the this command to trubleshoot
+
+# ansible-playbook -vv -e component=payment roboshop.yaml
+
+# ansible-playbook -vvv -e component=payment roboshop.yaml

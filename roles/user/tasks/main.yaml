@@ -26,3 +26,7 @@
 # 4. now ansible executes the catalogue/tasks/main.yaml
 # 5. we extracted  common code into  common/app-setup.yaml
 # 6. ansible imports  this into catalogue/tasks/main.yaml
+
+# to debug if any issues in the command we have to use 
+# nohup ansible-playbook -e component=user  roboshop.yaml &
+# tail -f /var/log/ansible.log
