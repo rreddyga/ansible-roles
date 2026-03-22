@@ -1,2 +1,3 @@
 dependencies:
+  #catalogue role depends on common role
   role: common
